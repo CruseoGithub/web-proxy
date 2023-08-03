@@ -4,7 +4,7 @@ module.exports = async (req, res) => {
   const { url } = req.query;
 
   if (!url) {
-    return res.status(400).send('URL is required!');
+    return res.status(400).send('URL is required');
   }
 
   try {
@@ -17,7 +17,7 @@ module.exports = async (req, res) => {
     
     // Set the content type from the original response
     res.setHeader('Content-Type', response.headers['content-type']);
-    
+
     res.json(response.data);
   } catch (error) {
     res.status(500).send('Error fetching data');
