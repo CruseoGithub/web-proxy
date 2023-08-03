@@ -1,0 +1,43 @@
+const axios = require('axios');
+
+module.exports = async (req, res) => {
+  const { url } = req.query;
+
+  if (!url) {
+    return res.status(400).send('URL is required');
+  }
+
+  try {
+    const response = await axios.get(url);
+    res.json(response.data);
+  } catch (error) {
+    res.status(500).send('Error fetching data');
+  }
+};
+
+
+/* const express = require('express');
+const axios = require('axios');
+
+const app = express();
+const port = process.env.PORT || 3000;
+
+app.get('/api/proxy', async (req, res) => {
+  const { url } = req.query;
+  
+  if (!url) {
+    return res.status(400).send('URL is required');
+  }
+
+  try {
+    const response = await axios.get(url);
+    res.json(response.data);
+  } catch (error) {
+    res.status(500).send('Error fetching data');
+  }
+});
+
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
+});
+ */
