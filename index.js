@@ -15,6 +15,9 @@ module.exports = async (req, res) => {
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
     
+    // Set the content type from the original response
+    res.setHeader('Content-Type', response.headers['content-type']);
+    
     res.json(response.data);
   } catch (error) {
     res.status(500).send('Error fetching data');
